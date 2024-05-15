@@ -6,16 +6,13 @@ import {
   EventRegistrationFormContainer,
   EventRegistrationFormInput,
   EventRegistrationFormLabel,
-  // EventRegistrationFormLabelUi,
   EventRegistrationFormStyled,
   EventRegistrationFormTitle,
   InputErrorMessage,
 } from "./EventRegistrationForm.styles";
-import { EHearRadio, IFormInputs } from "../../models";
+import { ESelectedRadio, IFormInputs } from "../../models";
 import {
-  FormControl,
   FormControlLabel,
-  // FormLabel,
   Radio,
   RadioGroup,
 } from "@mui/material";
@@ -25,16 +22,14 @@ const schema = yup
     fullName: yup.string().required("Full name is required"),
     email: yup.string().required("Email is required").email("Invalid email"),
     dateOfBirth: yup
-      .date()
-      .required("Enter a date of birth")
-      .min(new Date(1900, 0, 1))
-      .max(new Date(), "You can't be born in the future!"),
-    hearRadio: yup
+      .string()
+      .required("Enter a date of birth"),
+    selectedRadio: yup
       .string()
       .oneOf([
-        EHearRadio.SOCIAL_MEDIA,
-        EHearRadio.FRIENDS,
-        EHearRadio.FOUND_MYSELF,
+        ESelectedRadio.SOCIAL_MEDIA,
+        ESelectedRadio.FRIENDS,
+        ESelectedRadio.FOUND_MYSELF,
       ])
       .required("Radio is required"),
   })
@@ -48,6 +43,9 @@ const EventRegistrationForm = () => {
     control,
   } = useForm<IFormInputs>({
     resolver: yupResolver(schema),
+    defaultValues: {
+      selectedRadio: ESelectedRadio.SOCIAL_MEDIA,
+    },
   });
   const onSubmit: SubmitHandler<IFormInputs> = (data) => {
     console.log("hello world");
@@ -94,99 +92,100 @@ const EventRegistrationForm = () => {
             {errors.dateOfBirth?.message}
           </InputErrorMessage>
         </EventRegistrationFormLabel>
-
-        <FormControl component="fieldset">
-          <EventRegistrationFormLabel className="font-konnect">
-            Where did you hear about this event?
-          </EventRegistrationFormLabel>
-          <Controller
-            rules={{ required: true }}
-            control={control}
-            name={"hearRadio"}
-            render={({ field }) => {
-              console.log(field);
-              return (
-                <RadioGroup {...field}>
-                  <FormControlLabel
-                    sx={{
-                      color: "#ffffff",
-                      "&.Mui-checked": {
-                        color: "#64ffda",
-                      },
-                    }}
-                    value={EHearRadio.SOCIAL_MEDIA}
-                    control={
-                      <Radio
-                        sx={{
-                          color: "#ffffff",
-                          "&.Mui-checked": {
-                            color: "#64ffda",
-                          },
-                        }}
-                      />
-                    }
-                    label={
-                      <span className="font-konnect">
-                        {EHearRadio.SOCIAL_MEDIA.charAt(0).toUpperCase() +
-                          EHearRadio.SOCIAL_MEDIA.slice(1)}
-                      </span>
-                    }
-                  />
-                  <FormControlLabel
-                    sx={{
-                      color: "#ffffff",
-                      "&.Mui-checked": {
-                        color: "#64ffda",
-                      },
-                    }}
-                    value={EHearRadio.FRIENDS}
-                    control={
-                      <Radio
-                        sx={{
-                          color: "#ffffff",
-                          "&.Mui-checked": {
-                            color: "#64ffda",
-                          },
-                        }}
-                      />
-                    }
-                    label={
-                      <span className="font-konnect">
-                        {EHearRadio.FRIENDS.charAt(0).toUpperCase() +
-                          EHearRadio.FRIENDS.slice(1)}
-                      </span>
-                    }
-                  />
-                  <FormControlLabel
-                    sx={{
-                      color: "#ffffff",
-                      "&.Mui-checked": {
-                        color: "#64ffda",
-                      },
-                    }}
-                    value={EHearRadio.FOUND_MYSELF}
-                    control={
-                      <Radio
-                        sx={{
-                          color: "#ffffff",
-                          "&.Mui-checked": {
-                            color: "#64ffda",
-                          },
-                        }}
-                      />
-                    }
-                    label={
-                      <span className="font-konnect">
-                        {EHearRadio.FOUND_MYSELF.charAt(0).toUpperCase() +
-                          EHearRadio.FOUND_MYSELF.slice(1)}
-                      </span>
-                    }
-                  />
-                </RadioGroup>
-              );
-            }}
-          />
-        </FormControl>
+        <EventRegistrationFormLabel className="font-konnect">
+          Where did you hear about this event?
+        </EventRegistrationFormLabel>
+        <Controller
+          rules={{ required: true }}
+          control={control}
+          name="selectedRadio"
+          render={({ field }) => {
+            console.log(field);
+            return (
+              <RadioGroup
+                {...field}
+                name="radio-buttons-group"
+                aria-labelledby="demo-radio-buttons-group-label"
+              >
+                <FormControlLabel
+                  sx={{
+                    color: "#ffffff",
+                    "&.Mui-checked": {
+                      color: "#64ffda",
+                    },
+                  }}
+                  value={ESelectedRadio.SOCIAL_MEDIA}
+                  control={
+                    <Radio
+                      sx={{
+                        color: "#ffffff",
+                        "&.Mui-checked": {
+                          color: "#64ffda",
+                        },
+                      }}
+                    />
+                  }
+                  label={
+                    <span className="font-konnect">
+                      {ESelectedRadio.SOCIAL_MEDIA.charAt(0).toUpperCase() +
+                        ESelectedRadio.SOCIAL_MEDIA.slice(1)}
+                    </span>
+                  }
+                />
+                <FormControlLabel
+                  sx={{
+                    color: "#ffffff",
+                    "&.Mui-checked": {
+                      color: "#64ffda",
+                    },
+                  }}
+                  value={ESelectedRadio.FRIENDS}
+                  control={
+                    <Radio
+                      sx={{
+                        color: "#ffffff",
+                        "&.Mui-checked": {
+                          color: "#64ffda",
+                        },
+                      }}
+                    />
+                  }
+                  label={
+                    <span className="font-konnect">
+                      {ESelectedRadio.FRIENDS.charAt(0).toUpperCase() +
+                        ESelectedRadio.FRIENDS.slice(1)}
+                    </span>
+                  }
+                />
+                <FormControlLabel
+                  sx={{
+                    color: "#ffffff",
+                    "&.Mui-checked": {
+                      color: "#64ffda",
+                    },
+                  }}
+                  value={ESelectedRadio.FOUND_MYSELF}
+                  control={
+                    <Radio
+                      sx={{
+                        color: "#ffffff",
+                        "&.Mui-checked": {
+                          color: "#64ffda",
+                        },
+                      }}
+                    />
+                  }
+                  label={
+                    <span className="font-konnect">
+                      {ESelectedRadio.FOUND_MYSELF.charAt(0).toUpperCase() +
+                        ESelectedRadio.FOUND_MYSELF.slice(1)}
+                    </span>
+                  }
+                />
+              </RadioGroup>
+            );
+          }}
+        />
         <EventRegistrationFormBtn className="transition-all" type="submit" />
       </EventRegistrationFormStyled>
     </EventRegistrationFormContainer>

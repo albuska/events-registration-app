@@ -1,4 +1,3 @@
-import { FormLabel } from "@mui/material";
 import styled from "styled-components";
 
 interface IProps {
@@ -30,18 +29,6 @@ export const EventRegistrationFormStyled = styled.form`
 `;
 
 export const EventRegistrationFormLabel = styled.label`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-  color: var(--accent-color);
-
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-  }
-`;
-
-export const EventRegistrationFormLabelUi = styled(FormLabel)`
   display: flex;
   flex-direction: column;
   align-items: flex-start;

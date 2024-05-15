@@ -9,11 +9,11 @@ export interface IEvent {
 export interface IFormInputs {
   fullName: string;
   email: string;
-  dateOfBirth: Date;
-  hearRadio: EHearRadio;
+  dateOfBirth: string;
+  selectedRadio: ESelectedRadio;
 }
 
-export enum EHearRadio {
+export enum ESelectedRadio {
   SOCIAL_MEDIA = "social media",
   FRIENDS = "friends",
   FOUND_MYSELF = "found myself",
