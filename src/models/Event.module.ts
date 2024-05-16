@@ -18,3 +18,8 @@ export enum ESelectedRadio {
   FRIENDS = "friends",
   FOUND_MYSELF = "found myself",
 }
+
+export enum EParticipantsPageTab {
+  LIST = "list",
+  CHART = "chart",
+}

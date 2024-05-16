@@ -1,12 +1,11 @@
-import { EventParticipantsChart } from "../components/EventParticipantsChart";
-import { EventParticipantsList } from "../components/EventParticipantsList";
+import { MenuForActiveParticipantsLink } from "../components/MenuForActiveParticipantsLink";
 
 const EventParticipants = () => {
   return (
-    <div className="flex flex-col items-center gap-20">
-      <EventParticipantsList />
-      <EventParticipantsChart />
-    </div>
+    // <div className="flex flex-col items-center gap-20">
+    <>
+      <MenuForActiveParticipantsLink />
+    </>
   );
 };
 

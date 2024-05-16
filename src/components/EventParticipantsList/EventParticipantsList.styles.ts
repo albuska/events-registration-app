@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { EventBoardItem } from "../EventsBoard/eventsBoard.styles";
 
 export const EventParticipantsListContainer = styled.div`
   margin: 0 auto;
@@ -7,3 +8,7 @@ export const EventParticipantsListContainer = styled.div`
 `;
 
 export const EventParticipantsListStyled = styled.ul``;
+
+export const EventParticipantsListItem = styled(EventBoardItem)`
+  height: auto;
+`;

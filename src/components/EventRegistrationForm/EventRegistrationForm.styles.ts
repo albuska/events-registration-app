@@ -46,7 +46,8 @@ export const EventRegistrationFormInput = styled.input<IProps>`
   border-radius: 10px;
   background-color: transparent;
   border: 1px solid
-    ${({ $error }) => ($error === "true" ? "var(--error-color)" : "#ffffff")};
+    ${({ $error }) =>
+      $error === "true" ? "var(--error-color)" : "var(--main-color)"};
   color: var(--main-color);
   font-size: 18px;
 
