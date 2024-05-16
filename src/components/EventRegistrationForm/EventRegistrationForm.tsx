@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import {
   EventRegistrationFormBtn,
   EventRegistrationFormContainer,
@@ -11,29 +11,7 @@ import {
   InputErrorMessage,
 } from "./EventRegistrationForm.styles";
 import { ESelectedRadio, IFormInputs } from "../../models";
-import {
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-} from "@mui/material";
-
-const schema = yup
-  .object({
-    fullName: yup.string().required("Full name is required"),
-    email: yup.string().required("Email is required").email("Invalid email"),
-    dateOfBirth: yup
-      .string()
-      .required("Enter a date of birth"),
-    selectedRadio: yup
-      .string()
-      .oneOf([
-        ESelectedRadio.SOCIAL_MEDIA,
-        ESelectedRadio.FRIENDS,
-        ESelectedRadio.FOUND_MYSELF,
-      ])
-      .required("Radio is required"),
-  })
-  .required();
+import { schema } from "../../constants";
 
 const EventRegistrationForm = () => {
   const {
@@ -87,6 +65,7 @@ const EventRegistrationForm = () => {
             className="transition-all font-gravity"
             type="date"
             {...register("dateOfBirth")}
+            lang="en"
           />
           <InputErrorMessage className="font-konnect">
             {errors.dateOfBirth?.message}
@@ -100,7 +79,6 @@ const EventRegistrationForm = () => {
           control={control}
           name="selectedRadio"
           render={({ field }) => {
-            console.log(field);
             return (
               <RadioGroup
                 {...field}
@@ -186,7 +164,11 @@ const EventRegistrationForm = () => {
             );
           }}
         />
-        <EventRegistrationFormBtn className="transition-all" type="submit" />
+        <EventRegistrationFormBtn
+          className="font-gravity transition-all"
+          type="submit"
+          value={"Submit"}
+        />
       </EventRegistrationFormStyled>
     </EventRegistrationFormContainer>
   );

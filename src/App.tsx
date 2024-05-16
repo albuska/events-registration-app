@@ -1,6 +1,5 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
 import SharedLayout from "./components/SharedLayout/SharedLayout.tsx";
 
 const Home = lazy(() => import("./pages/Home.tsx"));
@@ -10,7 +9,7 @@ const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 
 function App() {
   return (
-    <>
+  <div>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
@@ -19,7 +18,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </>
+    </div>
   );
 }
 
