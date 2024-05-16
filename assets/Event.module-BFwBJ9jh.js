@@ -1,22 +1,22 @@
-import{p as o}from"./index-BA7-5lHM.js";const n=o.div`
+import{p as r}from"./index-DzgyQ7Gi.js";const i=r.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   padding-top: 20px;
   padding-bottom: 20px;
-`,a=o.h1`
+`,c=r.h1`
   color: var(--accent-color);
   font-size: 40px;
   text-align: center;
   font-weight: 700;
   text-decoration: underline;
   margin-bottom: 15px;
-`,i=o.form`
+`,l=r.form`
   width: 500px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-`,c=o.label`
+`,s=r.label`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -26,13 +26,13 @@ import{p as o}from"./index-BA7-5lHM.js";const n=o.div`
   input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
   }
-`,t=o.input`
+`,t=r.input`
   width: 100%;
   padding: 10px 15px;
   border-radius: 10px;
   background-color: transparent;
   border: 1px solid
-    ${({$error:r})=>r==="true"?"var(--error-color)":"#ffffff"};
+    ${({$error:o})=>o==="true"?"var(--error-color)":"var(--main-color)"};
   color: var(--main-color);
   font-size: 18px;
 
@@ -40,9 +40,9 @@ import{p as o}from"./index-BA7-5lHM.js";const n=o.div`
   &:focus {
     border-color: var(--accent-color);
   }
-`,l=o.p`
+`,p=r.p`
   color: var(--error-color);
-`,s=o(t)`
+`,d=r(t)`
   background-color: #142d4c;
   cursor: pointer;
 
@@ -51,4 +51,4 @@ import{p as o}from"./index-BA7-5lHM.js";const n=o.div`
     border-color: var(--accent-color);
     background-color: #393e46;
   }
-`;export{n as E,l as I,a,i as b,c,t as d,s as e};
+`;var n=(o=>(o.SOCIAL_MEDIA="social media",o.FRIENDS="friends",o.FOUND_MYSELF="found myself",o))(n||{}),e=(o=>(o.LIST="list",o.CHART="chart",o))(e||{});export{n as E,p as I,i as a,c as b,l as c,s as d,t as e,d as f,e as g};

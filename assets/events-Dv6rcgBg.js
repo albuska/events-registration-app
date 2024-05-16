@@ -1,4 +1,4 @@
-import{p as e,L as t}from"./index-BA7-5lHM.js";const n=e.div`
+import{p as e,L as t}from"./index-DzgyQ7Gi.js";const n=e.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
