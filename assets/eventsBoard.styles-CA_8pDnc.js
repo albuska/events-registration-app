@@ -1,4 +1,4 @@
-import{p as o,e as t}from"./index-Dn-0xz36.js";const i=o.div`
+import{p as o,e as t}from"./index-39key_2U.js";const n=o.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -25,8 +25,7 @@ import{p as o,e as t}from"./index-Dn-0xz36.js";const i=o.div`
   .Mui-selected {
     color: #ffffff;
   }
-`,r=o.ul`
-  width: 500px;
+`,i=o.ul`
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -40,15 +39,18 @@ import{p as o,e as t}from"./index-Dn-0xz36.js";const i=o.div`
     flex-direction: row;
     flex-wrap: wrap;
   }
-`,n=o.li`
+`,a=o.li`
   border: 1px solid var(--main-color);
-  width: calc(100% / 4);
-  height: 200px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 10px;
   border-radius: 10px;
-`,a=o.h1`
+
+  @media (min-width: 768px) {
+    width: calc(100% / 4);
+  }
+`,r=o.h1`
   color: var(--accent-color);
   font-size: 40px;
   text-align: center;
@@ -69,8 +71,18 @@ import{p as o,e as t}from"./index-Dn-0xz36.js";const i=o.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`,s=o.p`
+  color: #005792;
+`,p=o.p`
+  color: #005792;
+`,x=o.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: auto;
-`,p=o(t)`
+`,m=o(t)`
   padding: 2px 10px;
   color: var(--accent-color);
   font-weight: 500;
@@ -81,4 +93,37 @@ import{p as o,e as t}from"./index-Dn-0xz36.js";const i=o.div`
   &:hover {
     border-color: var(--accent-color);
   }
-`;export{i as E,a,r as b,n as c,c as d,d as e,l as f,p as g};
+`,f=o.div`
+  display: flex;
+  margin-bottom: 30px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+  }
+`,g=o.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`,v=o.label`
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--main-color);
+`,u=o.select`
+  background-color: transparent;
+  border: 1px solid var(--main-color);
+  padding: 3px 5px;
+  color: var(--main-color);
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 10px;
+`,b=o.option`
+  background-color: #393e46;
+`;export{n as E,f as S,r as a,g as b,v as c,u as d,b as e,i as f,a as g,c as h,d as i,l as j,s as k,p as l,x as m,m as n};

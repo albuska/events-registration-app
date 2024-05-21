@@ -1,4 +1,4 @@
-import{p as r}from"./index-Dn-0xz36.js";const i=r.div`
+import{p as r}from"./index-39key_2U.js";const i=r.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -12,10 +12,13 @@ import{p as r}from"./index-Dn-0xz36.js";const i=r.div`
   text-decoration: underline;
   margin-bottom: 15px;
 `,l=r.form`
-  width: 500px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (min-width: 768px) {
+    width: 500px;
+  }
 `,s=r.label`
   display: flex;
   flex-direction: column;
