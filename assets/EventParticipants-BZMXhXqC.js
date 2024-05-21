@@ -1,4 +1,4 @@
-import{p as a,j as t,r as s,u as b,L as S}from"./index-39key_2U.js";import{b as m,g as d}from"./Event.module-B54MuI4r.js";import{g as E,f as y,h as I,i as T}from"./eventsBoard.styles-CA_8pDnc.js";import{b as L,c as P}from"./api-CorWxHAP.js";const k=a.svg`
+import{p as a,j as t,r as s,u as b,L as S}from"./index-B48ODfjN.js";import{b as m,g as d}from"./Event.module-BzGAnCfk.js";import{g as E,f as y,h as I,i as T}from"./eventsBoard.styles-CrvIlZSg.js";import{b as L,c as P}from"./api-Bzu8rK1F.js";const k=a.svg`
   transition: fill 0.2s;
 `,C=({name:e,size:r,height:o,className:i,width:c,style:u,onClick:l,id:p,color:x,stroke:h,fill:v})=>{const n=r?`${r}px`:"20px",f=`${o}px`,j=`${c}px`;return t.jsx(k,{className:`${i} c-icon`,style:{...u,width:c?j:n,height:o?f:n,color:x||void 0},onClick:l,id:p,children:t.jsx("use",{xlinkHref:`#${e}`,id:p,stroke:h,fill:v})})},N=a.div`
   margin: 0 auto;
