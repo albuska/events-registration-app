@@ -31,7 +31,6 @@ export const EventsBoardContainer = styled.div`
 `;
 
 export const EventsBoardList = styled.ul`
-  width: 500px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -49,12 +48,15 @@ export const EventsBoardList = styled.ul`
 
 export const EventBoardItem = styled.li`
   border: 1px solid var(--main-color);
-  width: calc(100% / 4);
-  height: 200px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 10px;
   border-radius: 10px;
+
+  @media (min-width: 768px) {
+    width: calc(100% / 4);
+  }
 `;
 
 export const EventBoardTitle = styled.h1`
@@ -80,6 +82,22 @@ export const EventBoardItemDescription = styled.p`
   color: var(--main-color);
 `;
 
+export const EventDetailsInfoBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
+export const EventBoardItemOrganizer = styled.p`
+  color: #005792;
+`;
+
+export const EventBoardItemDate = styled.p`
+  color: #005792;
+`;
+
 export const EventBoardBottomBox = styled.div`
   display: flex;
   justify-content: space-between;
@@ -98,4 +116,47 @@ export const EventBoardItemRegisterBtn = styled(Link)`
   &:hover {
     border-color: var(--accent-color);
   }
+`;
+
+export const SortedContainer = styled.div`
+  display: flex;
+  margin-bottom: 30px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+  }
+`;
+
+export const SortedBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const SortedLabel = styled.label`
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--main-color);
+`;
+
+export const SortedSelect = styled.select`
+  background-color: transparent;
+  border: 1px solid var(--main-color);
+  padding: 3px 5px;
+  color: var(--main-color);
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 10px;
+`;
+
+export const SortedOption = styled.option`
+  background-color: #393e46;
 `;

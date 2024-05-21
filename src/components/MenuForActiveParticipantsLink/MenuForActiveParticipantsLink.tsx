@@ -9,7 +9,7 @@ const MenuForActiveParticipantsLink = () => {
     EParticipantsPageTab.LIST
   );
   return (
-    <div>
+    <div style={{margin: "0 auto"}}>
       <ul>
         <li>
           <MenuForActiveParticipantsLinkBtn

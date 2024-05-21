@@ -22,10 +22,13 @@ export const EventRegistrationFormTitle = styled.h1`
 `;
 
 export const EventRegistrationFormStyled = styled.form`
-  width: 500px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (min-width: 768px) {
+    width: 500px;
+  }
 `;
 
 export const EventRegistrationFormLabel = styled.label`
