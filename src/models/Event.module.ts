@@ -1,9 +1,20 @@
 export interface IEvent {
-  id: number;
+  _id: string;
   title: string;
   description: string;
   event_date: string;
   organizer: string;
+}
+
+export interface IParticipant {
+  _id: string;
+  fullName: string;
+  email: string;
+  dateOfBirth: string;
+  selectedRadio: ESelectedRadio;
+  event: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IFormInputs {
@@ -11,6 +22,7 @@ export interface IFormInputs {
   email: string;
   dateOfBirth: string;
   selectedRadio: ESelectedRadio;
+  event?: string | undefined;
 }
 
 export enum ESelectedRadio {

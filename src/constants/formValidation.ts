@@ -14,5 +14,6 @@ export const schema = yup
         ESelectedRadio.FOUND_MYSELF,
       ])
       .required("Radio is required"),
+    event: yup.string().optional(),
   })
   .required();

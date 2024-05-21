@@ -1,6 +1,7 @@
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   EventRegistrationFormBtn,
   EventRegistrationFormContainer,
@@ -12,8 +13,12 @@ import {
 } from "./EventRegistrationForm.styles";
 import { ESelectedRadio, IFormInputs } from "../../models";
 import { schema } from "../../constants";
+import { addParticipant } from "../../services/api";
 
 const EventRegistrationForm = () => {
+  const { eventId } = useParams();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -23,11 +28,16 @@ const EventRegistrationForm = () => {
     resolver: yupResolver(schema),
     defaultValues: {
       selectedRadio: ESelectedRadio.SOCIAL_MEDIA,
+      event: eventId,
     },
   });
-  const onSubmit: SubmitHandler<IFormInputs> = (data) => {
-    console.log("hello world");
-    console.log(data, "data");
+  const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
+    try {
+      await addParticipant(data);
+      navigate("/");
+    } catch (error) {
+      console.error("Error adding participant:", error);
+    }
   };
 
   return (
@@ -36,6 +46,7 @@ const EventRegistrationForm = () => {
         Event registration
       </EventRegistrationFormTitle>
       <EventRegistrationFormStyled onSubmit={handleSubmit(onSubmit)}>
+        <input type="hidden" value={eventId} {...register("event")} />
         <EventRegistrationFormLabel className="font-konnect">
           Full name
           <EventRegistrationFormInput

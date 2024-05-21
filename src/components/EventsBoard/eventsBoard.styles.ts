@@ -67,10 +67,12 @@ export const EventBoardTitle = styled.h1`
 `;
 
 export const EventBoardItemTitle = styled.h2`
+  max-width: 200px;
   color: var(--accent-color);
   font-size: 14px;
   text-align: center;
   font-weight: 400;
+  margin: 0 auto;
   margin-bottom: 20px;
 `;
 
@@ -97,4 +99,3 @@ export const EventBoardItemRegisterBtn = styled(Link)`
     border-color: var(--accent-color);
   }
 `;
-

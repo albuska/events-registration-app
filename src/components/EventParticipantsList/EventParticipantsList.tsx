@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import { EventRegistrationFormTitle } from "../EventRegistrationForm/EventRegistrationForm.styles";
 import {
   EventBoardItemDescription,
@@ -8,27 +9,58 @@ import {
   EventParticipantsListContainer,
   EventParticipantsListItem,
 } from "./EventParticipantsList.styles";
-import events from "../../../events.json";
-import { IEvent } from "../../models";
+import { IParticipant } from "../../models";
+import { useEffect, useState } from "react";
+import { getParticipants } from "../../services/api";
+import { Loader } from "../Loader";
 
 const EventParticipantsList = () => {
+  const { eventId } = useParams();
+  const [participants, setParticipants] = useState<IParticipant[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (eventId === undefined) return;
+    setIsLoading(true);
+
+    getParticipants(eventId)
+      .then(({ result }) => {
+        console.log(result, 'result');
+        setParticipants(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [eventId]);
+
   return (
     <EventParticipantsListContainer>
       <EventRegistrationFormTitle className="font-gravity text-center">
         {"Awesome event"} participants
       </EventRegistrationFormTitle>
-      <EventsBoardList>
-        {events.map((event: IEvent) => (
-          <EventParticipantsListItem key={event.id}>
-            <EventBoardItemTitle className="font-gravity">
-              {event.title}
-            </EventBoardItemTitle>
-            <EventBoardItemDescription className="font-konnect">
-              {event.description}
-            </EventBoardItemDescription>
-          </EventParticipantsListItem>
-        ))}
-      </EventsBoardList>
+      {isLoading ? (
+        <Loader />
+      ) : participants.length > 0 ? (
+        <EventsBoardList>
+          {participants.map((participant: IParticipant) => (
+            <EventParticipantsListItem key={participant._id}>
+              <EventBoardItemTitle className="font-gravity">
+                {participant.fullName}
+              </EventBoardItemTitle>
+              <EventBoardItemDescription className="font-konnect">
+                {participant.email}
+              </EventBoardItemDescription>
+            </EventParticipantsListItem>
+          ))}
+        </EventsBoardList>
+      ) : (
+        <EventRegistrationFormTitle className="font-gravity text-center">
+          There is no participant
+        </EventRegistrationFormTitle>
+      )}
     </EventParticipantsListContainer>
   );
 };

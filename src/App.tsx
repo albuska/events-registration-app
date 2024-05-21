@@ -9,12 +9,12 @@ const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 
 function App() {
   return (
-  <div>
+    <div>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
-          <Route path="registration" element={<EventRegistration />} />
-          <Route path="participants" element={<EventParticipants />} />
+          <Route path="registration/:eventId" element={<EventRegistration />} />
+          <Route path="participants/:eventId" element={<EventParticipants />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

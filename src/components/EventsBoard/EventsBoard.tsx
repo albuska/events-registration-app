@@ -1,5 +1,5 @@
 import { Pagination } from "@mui/material";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import {
   EventBoardBottomBox,
   EventBoardItem,
@@ -10,14 +10,16 @@ import {
   EventsBoardContainer,
   EventsBoardList,
 } from "./eventsBoard.styles";
-import events from "../../../events.json";
 import { IEvent } from "../../models";
+import { getEvents } from "../../services/api";
+import { Loader } from "../Loader";
 
 const itemsPerPage = 10;
 
 const EventsBoard = () => {
   const [page, setPage] = useState<number>(1);
-  const [totalItems] = useState<number>(events.length);
+  const [events, setEvents] = useState<IEvent[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleChange = (
     event: ChangeEvent<unknown>,
@@ -28,49 +30,76 @@ const EventsBoard = () => {
     setPage(value);
   };
 
-  const pageCount = Math.ceil(totalItems / itemsPerPage);
+  useEffect(() => {
+    setIsLoading(true);
+
+    getEvents()
+      .then(({ result }) => {
+        setEvents(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
+  const pageCount = Math.ceil(events.length / itemsPerPage);
 
   const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = Math.min(startIndex + itemsPerPage - 1, totalItems - 1);
+  const endIndex = Math.min(startIndex + itemsPerPage - 1, events.length - 1);
 
   const displayedItems = events.slice(startIndex, endIndex + 1);
 
   return (
     <EventsBoardContainer>
       <EventBoardTitle className="font-gravity">Events</EventBoardTitle>
-      <EventsBoardList>
-        {displayedItems.map((event: IEvent) => (
-          <EventBoardItem key={event.id}>
-            <EventBoardItemTitle className="font-gravity">
-              {event.title}
-            </EventBoardItemTitle>
-            <EventBoardItemDescription className="font-konnect">
-              {event.description}
-            </EventBoardItemDescription>
-            <EventBoardBottomBox>
-              <EventBoardItemRegisterBtn
-                to="registration"
-                className="font-konnect transition-all"
-              >
-                Register
-              </EventBoardItemRegisterBtn>
-              <EventBoardItemRegisterBtn
-                to="participants"
-                className="font-konnect"
-              >
-                View
-              </EventBoardItemRegisterBtn>
-            </EventBoardBottomBox>
-          </EventBoardItem>
-        ))}
-      </EventsBoardList>
-      <Pagination
-        className="MuiPaginationItem-root"
-        count={pageCount}
-        page={page}
-        onChange={handleChange}
-        defaultPage={page}
-      />
+      {isLoading ? (
+        <Loader />
+      ) : events.length > 0 ? (
+        <EventsBoardList>
+          {displayedItems.map((event: IEvent) => (
+            <EventBoardItem key={event._id}>
+              <EventBoardItemTitle className="font-gravity">
+                {event.title}
+              </EventBoardItemTitle>
+              <EventBoardItemDescription className="font-konnect">
+                {event.description}
+              </EventBoardItemDescription>
+              <EventBoardBottomBox>
+                <EventBoardItemRegisterBtn
+                  to={`/registration/${event._id}`}
+                  className="font-konnect transition-all"
+                  data-event-id={event._id}
+                >
+                  Register
+                </EventBoardItemRegisterBtn>
+                <EventBoardItemRegisterBtn
+                  to={`/participants/${event._id}`}
+                  className="font-konnect"
+                  data-event-id={event._id}
+                >
+                  View
+                </EventBoardItemRegisterBtn>
+              </EventBoardBottomBox>
+            </EventBoardItem>
+          ))}
+        </EventsBoardList>
+      ) : (
+        <EventBoardTitle className="font-gravity">
+          There is no event
+        </EventBoardTitle>
+      )}
+      {events.length > 0 && (
+        <Pagination
+          className="MuiPaginationItem-root"
+          count={pageCount}
+          page={page}
+          onChange={handleChange}
+          defaultPage={page}
+        />
+      )}
     </EventsBoardContainer>
   );
 };
