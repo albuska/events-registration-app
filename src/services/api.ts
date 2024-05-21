@@ -25,26 +25,12 @@ export const getEventById = async (eventId: string) => {
   }
 };
 
-// export const getParticipants = async (
-//   eventId: string,
-//   searchQuery?: string
-// ) => {
-//   try {
-//     const params = searchQuery ? { search: searchQuery } : {};
-//     const { data } = await axios.get(`/participants/${eventId}`, {
-//       params,
-//     });
-//     return data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 export const getParticipants = async (
   eventId: string,
   searchQuery?: string
 ) => {
   try {
-    const params = searchQuery ? { search: searchQuery } : {};
+    const params = searchQuery ? { query: searchQuery } : {};
     const { data } = await axios.get(`/participants/${eventId}`, { params });
 
     if (searchQuery && data.length > 0) {
